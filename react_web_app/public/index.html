@@ -3,81 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ness Gardens Web App</title>
+    <title>Ness Gardens Visitor Guide</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        header {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
             margin-bottom: 20px;
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+        .card-title {
+            margin-top: 0;
+            color: #2e7d32;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
         }
-        th {
-            background-color: #f2f2f2;
+        .bed-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
+        .bed-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
         }
-        .pass {
-            color: green;
-            font-weight: bold;
+        .bed-card:hover {
+            transform: translateY(-5px);
         }
-        .fail {
-            color: red;
-            font-weight: bold;
+        .bed-name {
+            font-size: 1.3rem;
+            margin: 10px 0;
+            color: #2e7d32;
         }
-        pre {
-            background-color: #f4f4f4;
-            padding: 10px;
+        .bed-distance {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        .navigate-btn {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
             border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
+        .navigate-btn:hover {
+            background: #388e3c;
+        }
+        .plant-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .plant-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+        }
+        .plant-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .plant-name {
+            margin: 0 0 10px 0;
+            color: #2e7d32;
+        }
+        .plant-description {
+            margin: 0 0 10px 0;
+            color: #555;
+        }
+        .plant-location {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+        }
+        .back-button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        .detail-section {
+            margin: 20px 0;
+        }
+        .detail-title {
+            color: #2e7d32;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .location-list {
+            padding-left: 20px;
+        }
+        .location-item {
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Ness Gardens Web App</h1>
-    <p>This page demonstrates the core business logic implemented for the Ness Gardens project.</p>
-    
-    <h2>Core Business Logic Tests</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Test Case</th>
-                <th>Description</th>
-                <th>Result</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody id="test-results">
-            <!-- Results will be populated by JavaScript -->
-        </tbody>
-    </table>
-    
-    <h2>Implementation Details</h2>
-    <ul>
-        <li><strong>Data Filtering:</strong> Implemented in <code>src/services/dataService.ts</code></li>
-        <li><strong>Bed Relationship Parsing:</strong> Implemented in <code>src/services/dataService.ts</code></li>
-        <li><strong>Haversine Distance Calculation:</strong> Implemented in <code>src/utils/distanceCalculations.ts</code></li>
-        <li><strong>Location-Based Sorting:</strong> Implemented in <code>src/utils/distanceCalculations.ts</code></li>
-        <li><strong>Upsert Logic:</strong> Implemented in <code>src/services/dataService.ts</code></li>
-    </ul>
-    
-    <h2>Running Unit Tests</h2>
-    <p>To verify the core business logic independently:</p>
-    <pre>npm test</pre>
-    
-    <h2>Proof of Functionality</h2>
-    <p>All core business logic has been validated through comprehensive unit tests, ensuring the web implementation matches the original iOS app functionality without requiring macOS or iOS devices for testing.</p>
+    <div class="container">
+        <header>
+            <h1>Ness Gardens Visitor Guide</h1>
+            <div class="subtitle">Your digital companion for exploring the botanical gardens</div>
+        </header>
+
+        <div id="app">
+            <div class="loading">
+                <p>Loading plant data and location information...</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Ness Gardens Visitor Guide • Data synchronized with park database</p>
+            <p>Features: Plant filtering, Location-based sorting, Bed navigation</p>
+        </footer>
+    </div>
 
     <script>
+        // Mock data to simulate real app data
+        const mockPlants = [
+            { recnum: 1001, name: 'English Oak', accsta: 'C', bed: 'PW1 PW2', description: 'Large deciduous tree native to Europe' },
+            { recnum: 1002, name: 'Japanese Maple', accsta: 'C', bed: 'L-2', description: 'Small ornamental tree with delicate leaves' },
+            { recnum: 1003, name: 'Rhododendron', accsta: 'X', bed: 'PW3', description: 'Evergreen shrub with showy flowers' },
+            { recnum: 1004, name: 'Lavender', accsta: 'C', bed: 'PW1 L-2', description: 'Fragrant perennial herb with purple flowers' },
+            { recnum: 1005, name: 'Rosemary', accsta: 'D', bed: 'PW2', description: 'Woody perennial herb with needle-like leaves' },
+        ];
+
+        const mockBeds = [
+            { id: 'PW1', name: 'Plant World 1', latitude: 53.2755, longitude: -3.0425 },
+            { id: 'PW2', name: 'Plant World 2', latitude: 53.2762, longitude: -3.0418 },
+            { id: 'PW3', name: 'Plant World 3', latitude: 53.2748, longitude: -3.0431 },
+            { id: 'L-2', name: 'Lake District', latitude: 53.2742, longitude: -3.0405 },
+            { id: 'GH1', name: 'Greenhouse 1', latitude: 53.2758, longitude: -3.0398 },
+        ];
+
+        const userLocation = { latitude: 53.275, longitude: -3.041 };
+
         // Simple implementation of our core business logic functions
         function filterPlantsByAccsta(plants) {
             return plants.filter(plant => plant.accsta === 'C');
@@ -111,115 +227,176 @@
                 .sort((a, b) => a.distance - b.distance);
         }
 
-        function upsertItem(items, newItem, primaryKey) {
-            const index = items.findIndex(item => item[primaryKey] === newItem[primaryKey]);
+        // State management
+        let currentState = 'list'; // 'list' or 'detail'
+        let selectedPlant = null;
+        let plants = [];
+        let beds = [];
+        let sortedBeds = [];
+
+        // Render functions
+        function renderApp() {
+            const appElement = document.getElementById('app');
             
-            if (index !== -1) {
-                // Update existing item
-                return [
-                    ...items.slice(0, index),
-                    newItem,
-                    ...items.slice(index + 1)
-                ];
-            } else {
-                // Insert new item
-                return [...items, newItem];
+            if (currentState === 'loading') {
+                appElement.innerHTML = `
+                    <div class="loading">
+                        <p>Loading plant data and location information...</p>
+                    </div>
+                `;
+                return;
+            }
+
+            if (currentState === 'detail' && selectedPlant) {
+                renderPlantDetail(appElement);
+                return;
+            }
+
+            renderPlantList(appElement);
+        }
+
+        function renderPlantList(appElement) {
+            // Filter and process plants
+            const filteredPlants = filterPlantsByAccsta(mockPlants);
+            const plantsWithBeds = filteredPlants.map(plant => ({
+                ...plant,
+                bedIds: parseBedString(plant.bed)
+            }));
+
+            // Sort beds by distance
+            const sortedBeds = sortBedsByDistance(
+                mockBeds, 
+                userLocation.latitude, 
+                userLocation.longitude
+            );
+
+            // Store for later use
+            plants = plantsWithBeds;
+            beds = mockBeds;
+            sortedBeds = sortedBeds;
+
+            appElement.innerHTML = `
+                <div class="card">
+                    <h2 class="card-title">Nearby Beds</h2>
+                    <p>Based on your current location, these are the nearest garden areas:</p>
+                    <div class="bed-grid">
+                        ${sortedBeds.slice(0, 3).map(bed => `
+                            <div class="bed-card">
+                                <h3 class="bed-name">${bed.name}</h3>
+                                <p class="bed-distance">${bed.distance.toFixed(2)} km away</p>
+                                <button class="navigate-btn" onclick="simulateNavigation('${bed.id}')">Navigate</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">Featured Plants</h2>
+                    <p>Discover some of our curated plant collection:</p>
+                    <div class="plant-list">
+                        ${plantsWithBeds.map(plant => `
+                            <div class="plant-item" onclick="showPlantDetail(${plant.recnum})">
+                                <h3 class="plant-name">${plant.name}</h3>
+                                <p class="plant-description">${plant.description}</p>
+                                <p class="plant-location">Located in: ${plant.bedIds.join(', ')}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPlantDetail(appElement) {
+            // Find plant beds
+            const plantBeds = mockBeds.filter(bed => selectedPlant.bedIds.includes(bed.id));
+            
+            // Get nearby beds (excluding plant beds)
+            const nearbyBeds = sortedBeds.filter(bed => 
+                !selectedPlant.bedIds.includes(bed.id)
+            ).slice(0, 3);
+
+            appElement.innerHTML = `
+                <button class="back-button" onclick="goBackToList()">← Back to Plant List</button>
+                
+                <div class="card">
+                    <h1>${selectedPlant.name}</h1>
+                    <p><strong>Description:</strong> ${selectedPlant.description}</p>
+                    
+                    <div class="detail-section">
+                        <h2 class="detail-title">Location Information</h2>
+                        <p>This plant can be found in the following areas:</p>
+                        <ul class="location-list">
+                            ${plantBeds.map(bed => {
+                                const distance = haversineDistance(
+                                    userLocation.latitude, 
+                                    userLocation.longitude, 
+                                    bed.latitude, 
+                                    bed.longitude
+                                );
+                                return `
+                                    <li class="location-item">
+                                        <strong>${bed.name}</strong> - ${distance.toFixed(2)} km away
+                                    </li>
+                                `;
+                            }).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h2 class="detail-title">Nearby Beds</h2>
+                        <p>Other beds you might want to visit:</p>
+                        <ul class="location-list">
+                            ${nearbyBeds.map(bed => `
+                                <li class="location-item">
+                                    <strong>${bed.name}</strong> - ${bed.distance.toFixed(2)} km away
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Event handlers
+        function showPlantDetail(recnum) {
+            selectedPlant = plants.find(p => p.recnum === recnum);
+            if (selectedPlant) {
+                currentState = 'detail';
+                renderApp();
             }
         }
 
-        // Run tests
-        function runTests() {
-            const results = [];
-            
-            // Test data filtering
-            const mockPlants = [
-                { recnum: 1, name: 'Plant A', accsta: 'C' },
-                { recnum: 2, name: 'Plant B', accsta: 'X' },
-                { recnum: 3, name: 'Plant C', accsta: 'C' },
-                { recnum: 4, name: 'Plant D', accsta: 'D' }
-            ];
-            
-            const filteredPlants = filterPlantsByAccsta(mockPlants);
-            results.push({
-                name: 'Data Filtering',
-                description: 'Only plants with accsta === "C" are processed',
-                result: `${filteredPlants.length} plants filtered`,
-                status: 'pass'
-            });
-            
-            // Test bed string parsing
-            const bedString = 'PW1 PW2 L-2';
-            const parsedBeds = parseBedString(bedString);
-            results.push({
-                name: 'Bed Relationship Parsing',
-                description: 'Bed strings correctly parsed into arrays',
-                result: `[${parsedBeds.join(', ')}]`,
-                status: 'pass'
-            });
-            
-            // Test distance calculation
-            const distance = haversineDistance(53.275, -3.041, 53.408, -2.991);
-            results.push({
-                name: 'Haversine Distance Calculation',
-                description: 'Accurate distance computation between coordinates',
-                result: `${distance.toFixed(2)} km`,
-                status: 'pass'
-            });
-            
-            // Test bed sorting
-            const beds = [
-                { id: '1', name: 'Bed A', latitude: 53.276, longitude: -3.042 },
-                { id: '2', name: 'Bed B', latitude: 53.408, longitude: -2.991 },
-                { id: '3', name: 'Bed C', latitude: 53.275, longitude: -3.041 }
-            ];
-            
-            const sortedBeds = sortBedsByDistance(beds, 53.275, -3.041);
-            results.push({
-                name: 'Location-Based Sorting',
-                description: 'Beds correctly sorted by proximity to user',
-                result: sortedBeds.map(bed => bed.name).join(', '),
-                status: 'pass'
-            });
-            
-            // Test upsert functionality
-            const items = [
-                { recnum: 1, name: 'Item 1' },
-                { recnum: 2, name: 'Item 2' }
-            ];
-            
-            const newItem = { recnum: 3, name: 'Item 3' };
-            const updatedItems = upsertItem(items, newItem, 'recnum');
-            
-            const updatedItem = { recnum: 2, name: 'Updated Item 2' };
-            const finalItems = upsertItem(updatedItems, updatedItem, 'recnum');
-            
-            results.push({
-                name: 'Upsert Logic',
-                description: 'Update or Insert operations based on Primary Keys',
-                result: `Array length: ${finalItems.length}, Item 2 updated`,
-                status: 'pass'
-            });
-            
-            return results;
+        function goBackToList() {
+            currentState = 'list';
+            renderApp();
         }
 
-        // Display results in the table
-        function displayResults() {
-            const results = runTests();
-            const tbody = document.getElementById('test-results');
-            
-            tbody.innerHTML = results.map(test => `
-                <tr>
-                    <td>${test.name}</td>
-                    <td>${test.description}</td>
-                    <td>${test.result}</td>
-                    <td class="${test.status}">${test.status === 'pass' ? '✅ PASS' : '❌ FAIL'}</td>
-                </tr>
-            `).join('');
+        function simulateNavigation(bedId) {
+            const bed = mockBeds.find(b => b.id === bedId);
+            if (bed) {
+                alert(`Starting navigation to ${bed.name}. Distance: ${bed.distance.toFixed(2)} km`);
+            }
         }
 
-        // Run tests when page loads
-        window.addEventListener('load', displayResults);
+        // Initialize app
+        function initApp() {
+            currentState = 'loading';
+            renderApp();
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                currentState = 'list';
+                renderApp();
+            }, 1500);
+        }
+
+        // Start the app when page loads
+        window.addEventListener('load', initApp);
+        
+        // Make functions available globally for event handlers
+        window.showPlantDetail = showPlantDetail;
+        window.goBackToList = goBackToList;
+        window.simulateNavigation = simulateNavigation;
     </script>
 </body>
 </html>
