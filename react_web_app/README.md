@@ -28,12 +28,14 @@ src/
 
 This web application replicates the core business logic of the original iOS app without requiring macOS or iOS devices for testing. All critical functionality has been verified through comprehensive unit tests:
 
-### Core Business Logic Verification
+### Test Results Summary
 
-1. **Data Filtering**: Verified that only plants with `accsta === "C"` are processed and stored
-2. **Bed Relationship Parsing**: Confirmed that bed strings like `"PW1 PW2 L-2"` are correctly parsed into arrays
-3. **Haversine Distance Calculation**: Validated accurate distance computation between geographic coordinates
-4. **Location-Based Sorting**: Tested that beds are correctly sorted by proximity to user location
+| Test Case | Description | Result |
+|-----------|-------------|--------|
+| Data Filtering | Only plants with `accsta === "C"` are processed | ✅ PASS |
+| Bed Relationship Parsing | Bed strings like `"PW1 PW2 L-2"` correctly parsed | ✅ PASS |
+| Haversine Distance Calculation | Accurate distance computation between coordinates | ✅ PASS |
+| Location-Based Sorting | Beds correctly sorted by proximity to user | ✅ PASS |
 
 ### Running Unit Tests
 
