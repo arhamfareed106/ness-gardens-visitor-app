@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r1m-7h-fhd">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Ness Gardens-->
+        <scene sceneID="r1m-7h-fhd-scene">
+            <objects>
+                <viewController id="r1m-7h-fhd" customClass="MainViewController" customModule="UserLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r1m-7h-fhd-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="main-stack-view">
+                                <rect key="frame" x="80" y="350" width="233" height="152"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="map-view-button">
+                                        <rect key="frame" x="0.0" y="0.0" width="233" height="66"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Garden Map" image="map.fill"/>
+                                        <connections>
+                                            <action selector="mapViewButtonTapped:" destination="r1m-7h-fhd" eventType="touchUpInside" id="map-view-action"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="plant-list-button">
+                                        <rect key="frame" x="0.0" y="86" width="233" height="66"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Plants by Bed" image="list.bullet"/>
+                                        <connections>
+                                            <action selector="plantListButtonTapped:" destination="r1m-7h-fhd" eventType="touchUpInside" id="plant-list-action"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="r1m-7h-fhd-safe-area"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="main-stack-view" firstAttribute="centerY" secondItem="r1m-7h-fhd-view" secondAttribute="centerY" id="center-y-constraint"/>
+                            <constraint firstItem="main-stack-view" firstAttribute="leading" secondItem="r1m-7h-fhd-safe-area" secondAttribute="leading" constant="80" id="leading-constraint"/>
+                            <constraint firstItem="r1m-7h-fhd-safe-area" firstAttribute="trailing" secondItem="main-stack-view" secondAttribute="trailing" constant="80" id="trailing-constraint"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ness Gardens" id="navigation-item"/>
+                    <connections>
+                        <outlet property="mapViewButton" destination="map-view-button" id="map-view-outlet"/>
+                        <outlet property="plantListButton" destination="plant-list-button" id="plant-list-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r1m-7h-fhd-placeholder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="114" y="-27"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="map-scene">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="map-view-controller" customClass="MapViewController" customModule="UserLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="map-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="map-view-map">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="map-view-safe-area"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="map-view-map" firstAttribute="top" secondItem="map-view" secondAttribute="top" id="map-top-constraint"/>
+                            <constraint firstItem="map-view-map" firstAttribute="leading" secondItem="map-view-safe-area" secondAttribute="leading" id="map-leading-constraint"/>
+                            <constraint firstAttribute="bottom" secondItem="map-view-map" secondAttribute="bottom" id="map-bottom-constraint"/>
+                            <constraint firstItem="map-view-safe-area" firstAttribute="trailing" secondItem="map-view-map" secondAttribute="trailing" id="map-trailing-constraint"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Garden Map" id="map-navigation-item"/>
+                    <connections>
+                        <outlet property="mapView" destination="map-view-map" id="map-view-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="map-placeholder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="-27"/>
+        </scene>
+        <!--Plant List View Controller-->
+        <scene sceneID="plant-list-scene">
+            <objects>
+                <viewController storyboardIdentifier="PlantListViewController" id="plant-list-controller" customClass="PlantListViewController" customModule="UserLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="plant-list-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="plant-list-table">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="plant-list-safe-area"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="plant-list-table" firstAttribute="top" secondItem="plant-list-view" secondAttribute="top" id="table-top-constraint"/>
+                            <constraint firstItem="plant-list-table" firstAttribute="leading" secondItem="plant-list-safe-area" secondAttribute="leading" id="table-leading-constraint"/>
+                            <constraint firstAttribute="bottom" secondItem="plant-list-table" secondAttribute="bottom" id="table-bottom-constraint"/>
+                            <constraint firstItem="plant-list-safe-area" firstAttribute="trailing" secondItem="plant-list-table" secondAttribute="trailing" id="table-trailing-constraint"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Plants by Bed" id="plant-list-navigation-item"/>
+                    <connections>
+                        <outlet property="tableView" destination="plant-list-table" id="plant-list-table-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="plant-list-placeholder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="350"/>
+        </scene>
+        <!--Plant Detail View Controller-->
+        <scene sceneID="plant-detail-scene">
+            <objects>
+                <viewController storyboardIdentifier="PlantDetailViewController" id="plant-detail-controller" customClass="PlantDetailViewController" customModule="UserLocation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="plant-detail-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plant-detail-scroll">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plant-detail-content">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="600"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="plant-image-view">
+                                                <rect key="frame" x="20" y="20" width="353" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="image-height-constraint"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latin Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="latin-name-label">
+                                                <rect key="frame" x="20" y="240" width="353" height="24"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Common Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="common-name-label">
+                                                <rect key="frame" x="20" y="274" width="353" height="20.333333333333314"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="origin-map-view">
+                                                <rect key="frame" x="20" y="314.33333333333331" width="353" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="map-height-constraint"/>
+                                                </constraints>
+                                                <standardMapConfiguration key="preferredConfiguration"/>
+                                            </mapView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origin Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="origin-label">
+                                                <rect key="frame" x="20" y="534.33333333333337" width="353" height="20.333333333333371"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="plant-image-view" firstAttribute="top" secondItem="plant-detail-content" secondAttribute="top" constant="20" id="image-top-constraint"/>
+                                            <constraint firstItem="plant-image-view" firstAttribute="leading" secondItem="plant-detail-content" secondAttribute="leading" constant="20" id="image-leading-constraint"/>
+                                            <constraint firstAttribute="trailing" secondItem="plant-image-view" secondAttribute="trailing" constant="20" id="image-trailing-constraint"/>
+                                            <constraint firstItem="latin-name-label" firstAttribute="top" secondItem="plant-image-view" secondAttribute="bottom" constant="20" id="latin-top-constraint"/>
+                                            <constraint firstItem="latin-name-label" firstAttribute="leading" secondItem="plant-detail-content" secondAttribute="leading" constant="20" id="latin-leading-constraint"/>
+                                            <constraint firstAttribute="trailing" secondItem="latin-name-label" secondAttribute="trailing" constant="20" id="latin-trailing-constraint"/>
+                                            <constraint firstItem="common-name-label" firstAttribute="top" secondItem="latin-name-label" secondAttribute="bottom" constant="10" id="common-top-constraint"/>
+                                            <constraint firstItem="common-name-label" firstAttribute="leading" secondItem="plant-detail-content" secondAttribute="leading" constant="20" id="common-leading-constraint"/>
+                                            <constraint firstAttribute="trailing" secondItem="common-name-label" secondAttribute="trailing" constant="20" id="common-trailing-constraint"/>
+                                            <constraint firstItem="origin-map-view" firstAttribute="top" secondItem="common-name-label" secondAttribute="bottom" constant="20" id="map-top-constraint"/>
+                                            <constraint firstItem="origin-map-view" firstAttribute="leading" secondItem="plant-detail-content" secondAttribute="leading" constant="20" id="map-leading-constraint"/>
+                                            <constraint firstAttribute="trailing" secondItem="origin-map-view" secondAttribute="trailing" constant="20" id="map-trailing-constraint"/>
+                                            <constraint firstItem="origin-label" firstAttribute="top" secondItem="origin-map-view" secondAttribute="bottom" constant="20" id="origin-top-constraint"/>
+                                            <constraint firstItem="origin-label" firstAttribute="leading" secondItem="plant-detail-content" secondAttribute="leading" constant="20" id="origin-leading-constraint"/>
+                                            <constraint firstAttribute="trailing" secondItem="origin-label" secondAttribute="trailing" constant="20" id="origin-trailing-constraint"/>
+                                            <constraint firstAttribute="bottom" secondItem="origin-label" secondAttribute="bottom" constant="20" id="origin-bottom-constraint"/>
+                                            <constraint firstAttribute="height" constant="600" id="content-height-constraint"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="plant-detail-content" firstAttribute="width" secondItem="plant-detail-scroll" secondAttribute="width" id="content-width-constraint"/>
+                                    <constraint firstItem="plant-detail-content" firstAttribute="leading" secondItem="plant-detail-scroll" secondAttribute="leading" id="content-leading-constraint"/>
+                                    <constraint firstItem="plant-detail-content" firstAttribute="top" secondItem="plant-detail-scroll" secondAttribute="top" id="content-top-constraint"/>
+                                    <constraint firstAttribute="bottom" secondItem="plant-detail-content" secondAttribute="bottom" id="content-bottom-constraint"/>
+                                    <constraint firstAttribute="trailing" secondItem="plant-detail-content" secondAttribute="trailing" id="content-trailing-constraint"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="plant-detail-safe-area"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="plant-detail-scroll" firstAttribute="top" secondItem="plant-detail-view" secondAttribute="top" id="scroll-top-constraint"/>
+                            <constraint firstItem="plant-detail-scroll" firstAttribute="leading" secondItem="plant-detail-safe-area" secondAttribute="leading" id="scroll-leading-constraint"/>
+                            <constraint firstAttribute="bottom" secondItem="plant-detail-scroll" secondAttribute="bottom" id="scroll-bottom-constraint"/>
+                            <constraint firstItem="plant-detail-safe-area" firstAttribute="trailing" secondItem="plant-detail-scroll" secondAttribute="trailing" id="scroll-trailing-constraint"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Plant Details" id="plant-detail-navigation-item"/>
+                    <connections>
+                        <outlet property="commonNameLabel" destination="common-name-label" id="common-name-outlet"/>
+                        <outlet property="contentView" destination="plant-detail-content" id="content-view-outlet"/>
+                        <outlet property="latinNameLabel" destination="latin-name-label" id="latin-name-outlet"/>
+                        <outlet property="originLabel" destination="origin-label" id="origin-label-outlet"/>
+                        <outlet property="originMapView" destination="origin-map-view" id="origin-map-outlet"/>
+                        <outlet property="plantImageView" destination="plant-image-view" id="plant-image-outlet"/>
+                        <outlet property="scrollView" destination="plant-detail-scroll" id="scroll-view-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="plant-detail-placeholder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1600" y="350"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="list.bullet" width="20" height="14"/>
+        <image name="map.fill" width="20" height="20"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

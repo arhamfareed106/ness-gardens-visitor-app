@@ -1,0 +1,55 @@
+Core Data Model Setup Instructions for Ness Gardens App
+
+1. In Xcode, right-click on the "Data" group and select "New File..."
+2. Select "Core Data" from the left panel and choose "Data Model" from the templates
+3. Name the file "NessGardens" (without extension, as Xcode will add .xcdatamodeld)
+4. Click "Create"
+
+Setting up the Bed Entity:
+1. Select the "NessGardens.xcdatamodeld" file to open the Core Data editor
+2. Click the "+" button at the bottom to add a new entity
+3. Name the entity "Bed"
+4. Add the following attributes:
+   - bedID: String (Check "Indexed" in the Data Model Inspector)
+   - name: String
+   - latitude: Double
+   - longitude: Double
+
+Setting up the Plant Entity:
+1. Click the "+" button at the bottom to add another new entity
+2. Name the entity "Plant"
+3. Add the following attributes:
+   - recnum: String (Check "Indexed" in the Data Model Inspector)
+   - latinName: String
+   - commonName: String
+   - isFavorite: Boolean
+   - accsta: String
+
+Setting up the Relationship:
+1. Select the "Bed" entity
+2. In the editor, click the "+" under the "Relationships" section
+3. Name the relationship "plants"
+4. Set the Destination to "Plant"
+5. Set the Type to "To Many"
+6. In the Data Model Inspector, check "Transient" if needed
+
+7. Select the "Plant" entity
+8. In the editor, click the "+" under the "Relationships" section
+9. Name the relationship "beds"
+10. Set the Destination to "Bed"
+11. Set the Type to "To Many"
+
+Establishing the relationship inverse:
+1. Select the "plants" relationship in the Bed entity
+2. In the Data Model Inspector, set the "Inverse" to "beds"
+3. Select the "beds" relationship in the Plant entity
+4. In the Data Model Inspector, set the "Inverse" to "plants"
+
+Creating NSManagedObject subclasses:
+1. With the "NessGardens.xcdatamodeld" file selected, go to Editor > Create NSManagedObject Subclass...
+2. Make sure "NessGardens" is selected
+3. Select both "Bed" and "Plant" entities
+4. Choose the appropriate folder for saving (should be the Entities folder)
+5. Click "Create"
+
+This will generate the necessary NSManagedObject subclasses that match the entity definitions we've created manually.
